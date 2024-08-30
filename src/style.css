@@ -1,0 +1,50 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #200E13;
+  --card-color: #2E1A1E;
+  --text-color: #FFF8F7;
+  --label-color: #B19B9E;
+  --label-text-font: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, div#app {
+  background: var(--background-color);
+  width: 100dvw;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+h1 {
+  color: var(--text-color);
+  font-size: 1.625rem;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-color);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+h3 { 
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--label-color);
+  text-transform: capitalize;
+}

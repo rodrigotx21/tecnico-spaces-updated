@@ -1,0 +1,25 @@
+{
+  "name": "tecnico-spaces",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview",
+    "start:server": "node server.js"
+  },
+  "dependencies": {
+    "@material/web": "^2.1.0",
+    "filter-data": "^0.6.0",
+    "lodash.debounce": "^4.0.8",
+    "node-fetch": "^2.6.1",
+    "vue": "^3.4.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "gh-pages": "^6.1.1",
+    "vite": "^5.4.1"
+  }
+}
