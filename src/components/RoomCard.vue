@@ -22,42 +22,42 @@ export default {
             },
             location: this.space.location
         }
+    },
+    methods: {
+        getImageURl(id) {
+            return new URL('https://fenix.tecnico.ulisboa.pt/api/fenix/v1/spaces/' + id + '/blueprint').href;
+        }
     }
 }
 </script>
 <template>
     <li class="RoomCard">
-        <div class="RoomContainer">
-            <div class="header">
-            <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
-            <div class="info">
-                <h2>{{ space.name }}</h2>
-                <h3>{{ space.type.toLowerCase() }}</h3>
-            </div>
-            <input type="checkbox" class="dropdown" :id="space.id">
-            <label :for="space.id"></label>
-            </div>
-            <div class="space_ex">
-                <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
-            </div>
+        <div class="header">
+        <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
+        <div class="info">
+            <h2>{{ space.name }}</h2>
+            <h3>{{ space.type.toLowerCase() }}</h3>
         </div>
+        <input type="checkbox" class="dropdown" :id="space.id">
+        <label :for="space.id"></label>
+        </div>
+        <div class="space_ex">
+            <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
+        </div>
+        <img :src="getImageURl(space.id)" class="blueprint" alt="blueprint">
     </li>
 </template>
 <style scoped>
     .RoomCard {
         border-radius: 1.25rem;
+        padding: 0.625rem;
         background: var(--card-color);
-        display: grid;
-        grid-template-rows: 6.25rem;
-        transition: grid-template-rows 500ms;
-        overflow: hidden;
     }
-    .RoomCard:has(input[type="checkbox"]:checked) {
+    /*.RoomCard:has(input[type="checkbox"]:checked) {
         grid-template-rows: 1fr;
         transition: all 300ms;
-    }
+    }*/
     .header {
-        padding: 0.625rem;
         width: 100%;
         display: flex;
         align-items: center;
@@ -93,9 +93,18 @@ export default {
 
     .space_ex {
         display: flex;
-        padding: 0 0.625rem 0.625rem 0.625rem ;
+        padding: 0.625rem 0 0.625rem 0 ;
         align-items: center;
         gap: 0.125rem;
         flex-wrap: wrap;
+    }
+
+    img.blueprint {
+        width: 100%;
+        border-radius: 0.625rem;
+    }
+    .RoomCard:has(input[type="checkbox"]:not(:checked))
+    img.blueprint {
+        display: none;
     }
 </style>
