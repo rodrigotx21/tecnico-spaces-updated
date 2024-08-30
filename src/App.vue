@@ -5,7 +5,6 @@ import PageHeader from './components/PageHeader.vue';
 import SearchBar from './components/SearchBar.vue';
 import RoomCard from './components/RoomCard.vue';
 
-
 // Define reactive variables
 const spaces = ref({});
 const error = ref(null);
@@ -96,7 +95,5 @@ function filterSpaces(query, type) {
         flex-direction: column;
         gap: 0.625rem;
         padding: 0.625rem;
-        height: 100%;
-        overflow-y: scroll;
     }
 </style>

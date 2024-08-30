@@ -1,56 +1,68 @@
 <script>
+import BreadCrumb from './BreadCrumb.vue';
+
 export default {
     name: 'RoomCard',
+    components: {
+        BreadCrumb
+    },
     props: {
         space: {
             type: Object,
             required: true
         }
-
     },
     data() {
         return {
             space_icon: {
-                'campus': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ec976ffc249d4ecfedf2cbf29d69b2c4aad258dd/src/assets/icons/icons8-campus.svg').href,
-                'building': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ec976ffc249d4ecfedf2cbf29d69b2c4aad258dd/src/assets/icons/icons8-building.svg').href,
-                'floor': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ec976ffc249d4ecfedf2cbf29d69b2c4aad258dd/src/assets/icons/icons8-floor.svg').href,
-                'room': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ec976ffc249d4ecfedf2cbf29d69b2c4aad258dd/src/assets/icons/icons8-room.svg').href
-            }
+                'campus': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-campus.svg').href,
+                'building': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-building.svg').href,
+                'floor': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-floor.svg').href,
+                'room': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-room.svg').href
+            },
+            location: this.space.location
         }
     }
 }
 </script>
 <template>
     <li class="RoomCard">
-        <div class="header">
-            <img :src="space_icon[space.type.toLowerCase()]" alt="room-icon" class="room_icon">
+        <div class="RoomContainer">
+            <div class="header">
+            <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
             <div class="info">
                 <h2>{{ space.name }}</h2>
                 <h3>{{ space.type.toLowerCase() }}</h3>
             </div>
             <input type="checkbox" class="dropdown" :id="space.id">
             <label :for="space.id"></label>
+            </div>
+            <div class="space_ex">
+                <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
+            </div>
         </div>
     </li>
 </template>
 <style scoped>
     .RoomCard {
-        padding: 0.625rem;
         border-radius: 1.25rem;
         background: var(--card-color);
-        transition: all 300ms;
+        display: grid;
+        grid-template-rows: 6.25rem;
+        transition: grid-template-rows 500ms;
+        overflow: hidden;
     }
     .RoomCard:has(input[type="checkbox"]:checked) {
-        height: 200px;
+        grid-template-rows: 1fr;
         transition: all 300ms;
     }
     .header {
+        padding: 0.625rem;
         width: 100%;
         display: flex;
         align-items: center;
     }
     img.room_icon {
-        width: 5rem;
         height: 5rem;
     }
     
@@ -63,7 +75,7 @@ export default {
         margin-left: auto;
         margin-right: 0.625rem;
         cursor: pointer;	
-        background-image: url(https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ec976ffc249d4ecfedf2cbf29d69b2c4aad258dd/src/assets/icons/icon-keyboard-down.svg);
+        background-image: url(https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icon-keyboard-down.svg);
         transition: all 300ms;
     }
     input.dropdown:checked + label {
@@ -77,5 +89,13 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 0.125rem;
+    }
+
+    .space_ex {
+        display: flex;
+        padding: 0 0.625rem 0.625rem 0.625rem ;
+        align-items: center;
+        gap: 0.125rem;
+        flex-wrap: wrap;
     }
 </style>

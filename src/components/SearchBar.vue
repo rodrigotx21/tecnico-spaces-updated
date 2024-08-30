@@ -41,7 +41,7 @@ export default {
 <template>
     <section class="SearchHeader">
         <div class="SearchBar">
-            <img src="https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/df38db1b6c67f9b162b62a34a554815bdaec06df/src/assets/icon-search.svg" alt="search-icon" class="icon">
+            <img src="../assets/icon-search.svg" alt="search-icon" class="icon">
             <input 
                 v-model="searchQuery" 
                 @input="debounceSearch" 
@@ -79,6 +79,10 @@ export default {
 
 <style scoped>
     .SearchHeader {
+        position: sticky;
+        top: 0;
+        background: var(--background-color);
+        z-index: 1;
         display: flex;
         flex-direction: column;
     }
