@@ -93,13 +93,14 @@ export default {
 
     .space_ex {
         display: flex;
-        padding: 0.625rem 0 0.625rem 0 ;
+        margin-top: 0.625rem;
         align-items: center;
         gap: 0.125rem;
         flex-wrap: wrap;
     }
 
     img.blueprint {
+        margin-top: 0.625rem;
         width: 100%;
         border-radius: 0.625rem;
     }
