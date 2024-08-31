@@ -88,7 +88,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
   filteredSpaces,
   {
     // Keep `itemHeight` in sync with the item's row.
-    itemHeight: 185.6,
+    itemHeight: 198,
   },
 )
 
@@ -109,9 +109,9 @@ function closeModal() {
 <template>
     <PageHeader />
     <SearchBar @search="filterSpaces" />
-    <div v-bind="containerProps" style="height: calc(100vh - 10rem);">
+    <div v-bind="containerProps" style="height: calc(100vh - 10rem); overflow-x: hidden;">
       <div v-bind="wrapperProps" class="cards">
-        <div v-for="space in list" :key="space.data.id" style="height: 11.6rem">
+        <div v-for="space in list" :key="space.data.id">
           <RoomCard :space="space.data" @openModal="openModal(space.data.id)"/>
         </div>
       </div>
@@ -126,7 +126,6 @@ function closeModal() {
     div.cards {
         display: flex;
         flex-direction: column;
-        gap: 0.625rem;
         padding: 0.625rem;
     }
 

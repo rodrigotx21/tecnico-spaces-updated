@@ -32,7 +32,7 @@ export default {
 }
 </script>
 <template>
-    <div class="RoomCard">
+    <div class="RoomCard" v-motion-slide-right>
         <div class="header">
         <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
         <div class="info">
@@ -55,6 +55,7 @@ export default {
     .RoomCard {
         border-radius: 1.25rem;
         padding: 0.625rem;
+        margin-bottom: 0.625rem;
         background: var(--card-color);
     }
     /*.RoomCard:has(input[type="checkbox"]:checked) {
