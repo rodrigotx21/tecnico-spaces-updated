@@ -21,8 +21,8 @@
     }
 
     .schedule {
-        width: 90vw;
-        height: 90vh;
+        width: 90svw;
+        height: 70svh;
         color-scheme: dark;
     }
 </style>
