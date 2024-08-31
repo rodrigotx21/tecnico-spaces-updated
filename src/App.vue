@@ -94,10 +94,12 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 
 // Modal
 const isModalOpen = ref(false);
-const ModalId = ref('');
+const modalType = ref();
+const modalId = ref('');
 
-function openModal(id) {
-  ModalId.value = id;
+function openModal(id, type) {
+  modalId.value = id;
+  modalType.value = type;
   isModalOpen.value = true;
 }
 
@@ -111,14 +113,15 @@ function closeModal() {
     <SearchBar @search="filterSpaces" />
     <div v-bind="containerProps" style="height: calc(100vh - 10rem); overflow-x: hidden;">
       <div v-bind="wrapperProps" class="cards">
-        <div v-for="space in list" :key="space.data.id">
-          <RoomCard :space="space.data" @openModal="openModal(space.data.id)"/>
+        <div v-for="(space, index) in list" :key="index" :id="index">
+          <RoomCard :space="space.data" @openModal="openModal"/>
         </div>
       </div>
     </div>
     
+    <!-- Blueprint Modal -->
     <div class="modal-bg" v-if="isModalOpen">
-        <Modal :id="ModalId" @closeModal="closeModal"/>
+        <Modal :id="modalId" :type="modalType" @closeModal="closeModal"/>
     </div>
 </template>
 

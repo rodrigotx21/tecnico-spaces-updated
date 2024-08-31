@@ -79,6 +79,8 @@ export default {
 
 <style scoped>
     .SearchHeader {
+        position: sticky;
+        top: 0;
         background: var(--background-color);
         z-index: 1;
         display: flex;
@@ -121,6 +123,7 @@ export default {
 
     .label {
         --label-text-font: Inter;
+        color: var(--text-color);
     }
 
     img.icon {

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -10,6 +12,11 @@
   --text-color: #FFF8F7;
   --label-color: #B19B9E;
   --label-text-font: inherit;
+
+
+  --background-color: #2e3242;
+  --card-color: #3d4359;
+  --label-color: #9babb1;
 }
 
 * {
@@ -44,9 +51,15 @@ h2 {
   overflow: hidden;
 }
 
-h3 { 
+h3, ::placeholder { 
   font-size: 1rem;
   font-weight: 400;
   color: var(--label-color);
   text-transform: capitalize;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-color);
 }

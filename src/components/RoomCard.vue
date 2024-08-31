@@ -25,8 +25,8 @@ export default {
     },
     emits: ['openModal'],
     methods: {
-        openModal() {
-            this.$emit('openModal');
+        openModal(modal_type) {
+            this.$emit('openModal', this.space.id, modal_type);
         }
     }
 }
@@ -45,10 +45,15 @@ export default {
         <div class="space_ex">
             <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
         </div>
-        <button class="blueprint_button" @click="openModal">
-            <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="blueprint_icon">
-            <h5>See Blueprint</h5>
-        </button>
+        <div class="buttons_wrapper">
+            <button class="blueprint_button" @click="openModal('blueprint')">
+                <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
+                <h4>See Blueprint</h4>
+            </button>
+            <button v-if="space.type == 'ROOM'" class="schedule_button" @click="openModal('schedule')">
+                <img src="../assets/icon-schedule.svg" alt="schedule-icon" class="button_icon">
+            </button>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -88,7 +93,7 @@ export default {
         transition: all 300ms;
     }
     .info {
-        width: 50%;
+        width: 100%;
         height: 5rem;
         padding: 0rem 0.625rem;
         display: flex;
@@ -104,21 +109,17 @@ export default {
         flex-wrap: wrap;
     }
 
-    img.blueprint {
-        margin-top: 0.625rem;
-        width: 100%;
-        border-radius: 0.625rem;
+    .buttons_wrapper {
+        display: flex;
+        gap: 0.625rem;
     }
-    .RoomCard:has(input[type="checkbox"]:not(:checked))
-    img.blueprint {
-        display: none;
-    }
+    
 
-    img.blueprint_icon {
+    img.button_icon {
         height: 1.25rem;
     }
 
-    button.blueprint_button {
+    button {
         width: 100%;
         margin-top: 0.625rem;
         padding: 0.625rem;
@@ -135,5 +136,9 @@ export default {
     }
     button.blueprint_button:hover {
         opacity: 0.9;
+    }
+
+    button.schedule_button {
+        width: 2.5rem;
     }
 </style>
