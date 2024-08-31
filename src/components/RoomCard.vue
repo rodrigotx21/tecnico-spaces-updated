@@ -32,7 +32,7 @@ export default {
 }
 </script>
 <template>
-    <li class="RoomCard">
+    <div class="RoomCard">
         <div class="header">
         <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
         <div class="info">
@@ -49,7 +49,7 @@ export default {
             <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="blueprint_icon">
             <h5>See Blueprint</h5>
         </button>
-    </li>
+    </div>
 </template>
 <style scoped>
     .RoomCard {

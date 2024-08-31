@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { filterData, SearchType } from 'filter-data';
+import { useVirtualList } from '@vueuse/core';
 import PageHeader from './components/PageHeader.vue';
 import SearchBar from './components/SearchBar.vue';
 import RoomCard from './components/RoomCard.vue';
@@ -44,6 +45,7 @@ onMounted(() => {
   if (savedSpaces) {
     spaces.value = JSON.parse(savedSpaces);
     filteredSpaces.value = Object.values(spaces.value).flat();
+
     console.log('Spaces data loaded from local storage.');
   }
 
@@ -70,6 +72,7 @@ watch([searchQuery, selectedType], () => {
         filteredSpaces.value = Object.values(spaces.value).flat().filter(space => 
             filterData([space], searchConditions).length > 0
         );
+
     }
 }, { immediate: true });
 
@@ -80,11 +83,18 @@ function filterSpaces(query, type) {
   selectedType.value = type;
 }
 
+// Use Virtual List
+const { list, containerProps, wrapperProps } = useVirtualList(
+  filteredSpaces,
+  {
+    // Keep `itemHeight` in sync with the item's row.
+    itemHeight: 185.6,
+  },
+)
+
 // Modal
 const isModalOpen = ref(false);
 const ModalId = ref('');
-
-
 
 function openModal(id) {
   ModalId.value = id;
@@ -94,15 +104,18 @@ function openModal(id) {
 function closeModal() {
   isModalOpen.value = false;
 }
-
 </script>
 
 <template>
     <PageHeader />
     <SearchBar @search="filterSpaces" />
-    <ul class="cards">
-        <RoomCard v-for="space in filteredSpaces" :space="space" :key="space.id" @openModal="openModal(space.id)" />
-    </ul>
+    <div v-bind="containerProps" style="height: calc(100vh - 10rem);">
+      <div v-bind="wrapperProps" class="cards">
+        <div v-for="space in list" :key="space.data.id" style="height: 11.6rem">
+          <RoomCard :space="space.data" @openModal="openModal(space.data.id)"/>
+        </div>
+      </div>
+    </div>
     
     <div class="modal-bg" v-if="isModalOpen">
         <Modal :id="ModalId" @closeModal="closeModal"/>
@@ -110,7 +123,7 @@ function closeModal() {
 </template>
 
 <style>
-    ul.cards {
+    div.cards {
         display: flex;
         flex-direction: column;
         gap: 0.625rem;

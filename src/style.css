@@ -21,9 +21,11 @@
 body, div#app {
   background: var(--background-color);
   width: 100dvw;
-  height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
 }
+
+
 
 h1 {
   color: var(--text-color);
