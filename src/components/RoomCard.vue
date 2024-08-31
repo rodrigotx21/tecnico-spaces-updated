@@ -23,9 +23,10 @@ export default {
             location: this.space.location
         }
     },
+    emits: ['openModal'],
     methods: {
-        getImageURl(id) {
-            return new URL('https://fenix.tecnico.ulisboa.pt/api/fenix/v1/spaces/' + id + '/blueprint').href;
+        openModal() {
+            this.$emit('openModal');
         }
     }
 }
@@ -38,13 +39,16 @@ export default {
             <h2>{{ space.name }}</h2>
             <h3>{{ space.type.toLowerCase() }}</h3>
         </div>
-        <input type="checkbox" class="dropdown" :id="space.id">
-        <label :for="space.id"></label>
+        <!--<input type="checkbox" class="dropdown" :id="space.id">
+        <label :for="space.id"></label>-->
         </div>
         <div class="space_ex">
             <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
         </div>
-        <img :src="getImageURl(space.id)" class="blueprint" alt="blueprint">
+        <button class="blueprint_button" @click="openModal">
+            <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="blueprint_icon">
+            <h5>See Blueprint</h5>
+        </button>
     </li>
 </template>
 <style scoped>
@@ -107,5 +111,28 @@ export default {
     .RoomCard:has(input[type="checkbox"]:not(:checked))
     img.blueprint {
         display: none;
+    }
+
+    img.blueprint_icon {
+        height: 1.25rem;
+    }
+
+    button.blueprint_button {
+        width: 100%;
+        margin-top: 0.625rem;
+        padding: 0.625rem;
+        background: var(--background-color);
+        border: none;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        border-radius: 0.625rem;
+        cursor: pointer;
+        color: var(--text-color);
+    }
+    button.blueprint_button:hover {
+        opacity: 0.9;
     }
 </style>

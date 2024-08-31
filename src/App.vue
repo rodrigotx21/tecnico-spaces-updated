@@ -4,6 +4,7 @@ import { filterData, SearchType } from 'filter-data';
 import PageHeader from './components/PageHeader.vue';
 import SearchBar from './components/SearchBar.vue';
 import RoomCard from './components/RoomCard.vue';
+import Modal from './components/Modal.vue';
 
 // Define reactive variables
 const spaces = ref({});
@@ -78,15 +79,34 @@ function filterSpaces(query, type) {
   searchQuery.value = query;
   selectedType.value = type;
 }
+
+// Modal
+const isModalOpen = ref(false);
+const ModalId = ref('');
+
+
+
+function openModal(id) {
+  ModalId.value = id;
+  isModalOpen.value = true;
+}
+
+function closeModal() {
+  isModalOpen.value = false;
+}
+
 </script>
 
 <template>
     <PageHeader />
     <SearchBar @search="filterSpaces" />
     <ul class="cards">
-        <RoomCard v-for="space in filteredSpaces" :space="space" :key="space.id" />
+        <RoomCard v-for="space in filteredSpaces" :space="space" :key="space.id" @openModal="openModal(space.id)" />
     </ul>
     
+    <div class="modal-bg" v-if="isModalOpen">
+        <Modal :id="ModalId" @closeModal="closeModal"/>
+    </div>
 </template>
 
 <style>
@@ -95,5 +115,18 @@ function filterSpaces(query, type) {
         flex-direction: column;
         gap: 0.625rem;
         padding: 0.625rem;
+    }
+
+    .modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
