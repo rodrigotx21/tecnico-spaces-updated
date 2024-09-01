@@ -48,11 +48,14 @@ export default {
             <BreadCrumb v-for="(parent, index) in space.location" :space="parent" :last="index === space.location.length - 1" />
         </div>
         <div class="buttons_wrapper">
-            <button class="blueprint_button" @click="openModal('blueprint')">
+            <button class="big_button" @click="openModal('blueprint')">
                 <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
-                <h4>See Blueprint</h4>
+                <h4 style="white-space: nowrap;">See Blueprint</h4>
             </button>
-            <button v-if="space.type == 'ROOM'" class="schedule_button" @click="openModal('schedule')">
+            <a v-if="space.maps" :href="space.maps" class="small_button">
+                <img src="../assets/icons8-google-maps.svg" alt="schedule-icon" class="button_icon">
+            </a>
+            <button v-if="space.type == 'ROOM'" class="small_button" @click="openModal('schedule')">
                 <img src="../assets/icon-schedule.svg" alt="schedule-icon" class="button_icon">
             </button>
         </div>
@@ -98,7 +101,7 @@ export default {
 
     .buttons_wrapper {
         display: flex;
-        gap: 0.625rem;
+        gap: 0.4375rem;
     }
     
 
@@ -106,7 +109,7 @@ export default {
         height: 1.25rem;
     }
 
-    button {
+    button, a {
         width: 100%;
         margin-top: 0.625rem;
         padding: 0.625rem;
@@ -121,11 +124,11 @@ export default {
         cursor: pointer;
         color: var(--text-color);
     }
-    button.blueprint_button:hover {
+    button:hover, a:hover {
         opacity: 0.9;
     }
 
-    button.schedule_button {
+    .small_button {
         width: 2.5rem;
     }
 </style>
