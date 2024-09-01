@@ -19,8 +19,7 @@ export default {
                 'building': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-building.svg').href,
                 'floor': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-floor.svg').href,
                 'room': new URL('https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icons8-big-room.svg').href
-            },
-            location: this.space.location
+            }
         }
     },
     emits: ['openModal'],
@@ -46,7 +45,7 @@ export default {
         <img src="../assets/icons8-last-24-hours.svg" alt="24-hour-icon" class="clock_icon">
         </div>
         <div class="space_ex">
-            <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
+            <BreadCrumb v-for="(parent, index) in space.location" :space="parent" :last="index === space.location.length - 1" />
         </div>
         <div class="buttons_wrapper">
             <button class="blueprint_button" @click="openModal('blueprint')">
