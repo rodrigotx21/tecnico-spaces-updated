@@ -42,14 +42,14 @@ export default {
             <h2>{{ space.name }}</h2>
             <h3>{{ space.type.toLowerCase() }}</h3>
         </div>
-        <img src="../assets/icons8-last-24-hours.svg" alt="24-hour-icon" class="clock_icon">
+        <img v-if="space.alwaysOpen == true" src="../assets/icons8-last-24-hours.svg" alt="24-hour-icon" class="clock_icon">
         </div>
         <div class="space_ex">
             <BreadCrumb v-for="(parent, index) in space.location" :space="parent" :last="index === space.location.length - 1" />
         </div>
         <div class="buttons_wrapper">
             <button class="blueprint_button" @click="openModal('blueprint')">
-                <img v-if="space.alwaysOpen" src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
+                <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
                 <h4>See Blueprint</h4>
             </button>
             <button v-if="space.type == 'ROOM'" class="schedule_button" @click="openModal('schedule')">
