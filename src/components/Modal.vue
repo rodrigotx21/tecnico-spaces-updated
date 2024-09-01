@@ -46,10 +46,11 @@ export default {
             type: String,
             required: true
         },
-        //events: {
-           // type: Array,
-            //required: true
-        //}
+        events: {
+            type: Array,
+            default: [],
+            required: false
+        }
     },
     setup(props, { emit }) {
         const modal = ref(null);
@@ -88,7 +89,7 @@ export default {
                 //isSilent: true,
                 showCurrentTime: true, // Display a line indicating the current time 
             },
-            events: [
+            /*events: [
                 {
                   title: "Advanced algebra",
                   with: "Chandler Bing",
@@ -113,7 +114,7 @@ export default {
                   color: "red",
                   id: "753944708f0f"
                 }
-            ]
+            ]*/
         }
     }
 };

@@ -26,7 +26,11 @@ export default {
     emits: ['openModal'],
     methods: {
         openModal(modal_type) {
-            this.$emit('openModal', this.space.id, modal_type);
+            if (modal_type == 'schedule') {
+                this.$emit('openModal', modal_type, '', this.space.events);
+            } else {
+                this.$emit('openModal', modal_type, this.space.id, []);
+            }
         }
     }
 }
