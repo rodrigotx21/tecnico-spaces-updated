@@ -96,12 +96,10 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 const isModalOpen = ref(false);
 const modalType = ref();
 const modalId = ref('');
-const modalEvents = ref([]);
 
-function openModal(type, id, events) {
+function openModal(type, id) {
   modalId.value = id;
   modalType.value = type;
-  modalEvents.value = events;
   isModalOpen.value = true;
 }
 
@@ -123,7 +121,7 @@ function closeModal() {
     
     <!-- Blueprint Modal -->
     <div class="modal-bg" v-if="isModalOpen">
-        <Modal :type="modalType" :id="modalId" :events="modalEvents" @closeModal="closeModal"/>
+        <Modal :type="modalType" :id="modalId" @closeModal="closeModal"/>
     </div>
 </template>
 

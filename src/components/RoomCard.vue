@@ -27,9 +27,9 @@ export default {
     methods: {
         openModal(modal_type) {
             if (modal_type == 'schedule') {
-                this.$emit('openModal', modal_type, '', this.space.events);
+                this.$emit('openModal', modal_type, this.space.id);
             } else {
-                this.$emit('openModal', modal_type, this.space.id, []);
+                this.$emit('openModal', modal_type, this.space.id);
             }
         }
     }
@@ -43,15 +43,14 @@ export default {
             <h2>{{ space.name }}</h2>
             <h3>{{ space.type.toLowerCase() }}</h3>
         </div>
-        <!--<input type="checkbox" class="dropdown" :id="space.id">
-        <label :for="space.id"></label>-->
+        <img src="../assets/icons8-last-24-hours.svg" alt="24-hour-icon" class="clock_icon">
         </div>
         <div class="space_ex">
             <BreadCrumb v-for="(parent, index) in location" :space="parent" :last="index === location.length - 1" />
         </div>
         <div class="buttons_wrapper">
             <button class="blueprint_button" @click="openModal('blueprint')">
-                <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
+                <img v-if="space.alwaysOpen" src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
                 <h4>See Blueprint</h4>
             </button>
             <button v-if="space.type == 'ROOM'" class="schedule_button" @click="openModal('schedule')">
@@ -67,35 +66,14 @@ export default {
         margin-bottom: 0.625rem;
         background: var(--card-color);
     }
-    /*.RoomCard:has(input[type="checkbox"]:checked) {
-        grid-template-rows: 1fr;
-        transition: all 300ms;
-    }*/
     .header {
         width: 100%;
         display: flex;
-        align-items: center;
     }
     img.room_icon {
         height: 5rem;
     }
     
-    input[type="checkbox"] {
-        display:none;
-    }
-    input.dropdown + label {
-        width: 2rem;
-        height: 2rem;
-        margin-left: auto;
-        margin-right: 0.625rem;
-        cursor: pointer;	
-        background-image: url(https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/ef3d5ce4230d6ab54fa5544c3786926c63adb191/src/assets/icon-keyboard-down.svg);
-        transition: all 300ms;
-    }
-    input.dropdown:checked + label {
-        transform: rotate(-180deg);
-        transition: all 300ms;
-    }
     .info {
         width: 100%;
         height: 5rem;
@@ -103,6 +81,12 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 0.125rem;
+    }
+
+    img.clock_icon {
+        height: 2rem;
+        width: 2rem;
+        color: var(--text-color);
     }
 
     .space_ex {
