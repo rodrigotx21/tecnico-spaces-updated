@@ -1,7 +1,7 @@
 <template>
     <section class="PageHeader">
         <img src="https://raw.githubusercontent.com/rodrigotx21/tecnico-spaces/main/src/assets/IST_Logo.png" class="tecnico" alt="IST Logo">
-        <h1><span class="tecnico">Técnico</span> Spaces</h1>
+        <h1><span class="tecnico">TÉCNICO</span> SPACES</h1>
     </section>
 </template>
 

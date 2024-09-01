@@ -67,6 +67,7 @@ export default {
         padding: 0.625rem;
         margin-bottom: 0.625rem;
         background: var(--card-color);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
     }
     .header {
         width: 100%;
