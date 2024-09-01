@@ -18,7 +18,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1.25rem;
+        gap: 1rem;
     }
 
     img.tecnico {
