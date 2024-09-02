@@ -30,6 +30,9 @@ export default {
             } else {
                 this.$emit('openModal', modal_type, this.space.id);
             }
+        },
+        getMapsURL() {
+            return new URL(this.space.map)
         }
     }
 }
@@ -52,7 +55,7 @@ export default {
                 <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
                 <h4 style="white-space: nowrap;">See Blueprint</h4>
             </button>
-            <a v-if="space.maps" :href="space.maps" class="small_button">
+            <a v-if="space.map" :href="getMapsURL()" class="small_button">
                 <img src="../assets/icons8-google-maps.svg" alt="schedule-icon" class="button_icon">
             </a>
             <button v-if="space.type == 'ROOM'" class="small_button" @click="openModal('schedule')">
@@ -69,12 +72,16 @@ export default {
         background: var(--card-color);
         box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
     }
+
     .header {
         width: 100%;
         display: flex;
     }
+
     img.room_icon {
         height: 5rem;
+        background: #464646;
+        border-radius: 0.625rem;
     }
     
     .info {

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  font-family: Inter, system-ui, Avenir, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,19 +16,20 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
-  --background-color: #200E13;
-  --card-color: #2E1A1E;
-  --text-color: #FFF8F7;
+  /*--background-color: #200E13;~
   --label-color: #B19B9E;
+  --card-color: #2E1A1E;*/
+  --text-color: #FFF8F7;
   --label-text-font: inherit;
 
 
-  --background-color: #2e3242;
-  --card-color: #3d4359;
+  --background-color: #001523;
+  --card-color: #00253e;
   --label-color: #9babb1;
 }
 
 * {
+  font-family: Inter, system-ui, Avenir, Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
