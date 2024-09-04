@@ -1,5 +1,16 @@
 {
   "projects": {
     "default": "tecnico-spaces-11c89"
-  }
+  },
+  "targets": {
+    "tecnico-spaces-11c89": {
+      "hosting": {
+        "tecnico-spaces": [
+          "tecnico-spaces"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

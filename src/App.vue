@@ -48,7 +48,7 @@ onMounted(() => {
 
     console.log('Spaces data loaded from local storage.');
   } else {
-    alert("Bem Vindo ao Técnico Spaces! Aqui podes encontrar todas os espaços do IST. O Técnicos Spaces não está afiliado ao tecnico.ulisboa.pt");
+    alert("Bem Vindo ao Técnico Spaces! Aqui podes encontrar todos os espaços do IST. O Técnicos Spaces não está afiliado ao tecnico.ulisboa.pt");
   }
 
   // Fetch data from API regardless, to ensure freshness
