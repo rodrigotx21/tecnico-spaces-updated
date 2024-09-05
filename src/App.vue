@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { filterData, SearchType } from 'filter-data';
+import Fuse from 'fuse.js'
 import { useVirtualList } from '@vueuse/core';
 import PageHeader from './components/PageHeader.vue';
 import SearchBar from './components/SearchBar.vue';
@@ -48,7 +49,7 @@ onMounted(() => {
 
     console.log('Spaces data loaded from local storage.');
   } else {
-    alert("Bem Vindo ao Técnico Spaces! Aqui podes encontrar todos os espaços do IST. O Técnicos Spaces não está afiliado ao tecnico.ulisboa.pt");
+    alert("Bem Vindo ao Técnico Spaces! Aqui podes encontrar todos os espaços do IST. O Técnico Spaces não está afiliado ao tecnico.ulisboa.pt");
   }
 
   // Fetch data from API regardless, to ensure freshness
@@ -58,23 +59,28 @@ onMounted(() => {
 
 // Watch for changes in searchQuery or selectedType and filter spaces accordingly
 watch([searchQuery, selectedType], () => {
-    const searchConditions = [
-        {
-            key: 'name',
-            value: searchQuery.value,
-            type: SearchType.LK,
-        }
-    ];
+    // Check if searchQuery.value is a string
+    if (typeof searchQuery.value !== 'string') {
+        console.error('searchQuery must be a string')
+        return
+    }
 
+    // Determine the dataset to search
+    let dataset;
     if (selectedType.value) {
-        // Filter spaces of the selected type
-        filteredSpaces.value = filterData(spaces.value[selectedType.value] || [], searchConditions);
+        dataset = spaces.value[selectedType.value] || [];
     } else {
-        // Filter through all spaces if no specific type is selected
-        filteredSpaces.value = Object.values(spaces.value).flat().filter(space => 
-            filterData([space], searchConditions).length > 0
-        );
+        dataset = Object.values(spaces.value).flat();
+    }
 
+    // Initialize Fuse with the appropriate dataset and options
+    const fuse = new Fuse(dataset, { keys: ['name'] });
+
+    // Perform the search or return the full list if searchQuery is empty
+    if (searchQuery.value.trim() === '') {
+        filteredSpaces.value = dataset;
+    } else {
+        filteredSpaces.value = fuse.search(searchQuery.value).map(result => result.item);
     }
 }, { immediate: true });
 
