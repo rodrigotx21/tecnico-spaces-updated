@@ -7,7 +7,7 @@ Welcome to Técnico Spaces! This web app is designed to help users search, filte
 - **Search**: Quickly find any space within Técnico Lisboa using an intuitive search bar.
 - **Filter**: Narrow down your search results based on specific criteria (e.g., building, room type, availability).
 - **Maps**: Some spaces have a Google Maps link.
-- **Schedules**: Access the schedules for various spaces to plan your studies accordingly.
+- **Schedules**: Access the schedules for various spaces to plan your studies accordingly, using [Qalendar](https://tomosterlund.github.io/qalendar/)
 - **Progressive Web App (PWA)**: 
   - **Installable**: Add Técnico Spaces to your home screen for offline access and a native app experience.
   - **Offline Support**: Access the app even when you’re offline, thanks to service workers.
@@ -23,6 +23,7 @@ Welcome to Técnico Spaces! This web app is designed to help users search, filte
 ## Website
 
 You can access the live web app here: [Técnico Spaces](https://tecnico-spaces.web.app/).
+You can see the Back-End [here](https://github.com/rodrigotx21/tecnico-spaces-backend)
 
 ## Known Issues & Limitations
 
