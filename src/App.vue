@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, watch, nextTick } from 'vue';
-import { filterData, SearchType } from 'filter-data';
 import Fuse from 'fuse.js'
 import { useVirtualList } from '@vueuse/core';
 import PageHeader from './components/PageHeader.vue';
