@@ -38,28 +38,28 @@ export default {
 }
 </script>
 <template>
-    <div class="RoomCard" v-motion-slide-right>
+    <div class="RoomCard" v-motion-pop>
         <div class="header">
         <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
         <div class="info">
             <h2>{{ space.name }}</h2>
             <h3>{{ space.type.toLowerCase() }}</h3>
         </div>
-        <img v-if="space.alwaysOpen == true" src="../assets/icons8-last-24-hours.svg" alt="24-hour-icon" class="clock_icon">
+        <img v-if="space.alwaysOpen == true" src="/icons8-last-24-hours.svg" alt="24-hour-icon" class="clock_icon">
         </div>
         <div class="space_ex">
             <BreadCrumb v-for="(parent, index) in space.location" :space="parent" :last="index === space.location.length - 1" />
         </div>
         <div class="buttons_wrapper">
             <button class="big_button" @click="openModal('blueprint')">
-                <img src="../assets/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
+                <img src="/icons8-blueprint.svg" alt="blueprint-icon" class="button_icon">
                 <h4 style="white-space: nowrap;">See Blueprint</h4>
             </button>
             <a v-if="space.map" :href="getMapsURL()" class="small_button">
-                <img src="../assets/icons8-google-maps.svg" alt="schedule-icon" class="button_icon">
+                <img src="/icons8-google-maps.svg" alt="schedule-icon" class="button_icon">
             </a>
             <button v-if="space.type == 'ROOM'" class="small_button" @click="openModal('schedule')">
-                <img src="../assets/icon-schedule.svg" alt="schedule-icon" class="button_icon">
+                <img src="/icon-schedule.svg" alt="schedule-icon" class="button_icon">
             </button>
         </div>
     </div>

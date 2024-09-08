@@ -41,7 +41,7 @@ export default {
 <template>
     <section class="SearchHeader">
         <div class="SearchBar">
-            <img src="../assets/icon-search.svg" alt="search-icon" class="icon">
+            <img src="/icon-search.svg" alt="search-icon" class="icon">
             <input 
                 v-model="searchQuery" 
                 @input="debounceSearch" 
@@ -95,14 +95,13 @@ export default {
         background: var(--card-color);
         transition: all 300ms ease-in-out;
     }
-    /*.SearchHeader:focus-within .SearchBar, 
-    .SearchBar:has(input:not(:placeholder-shown)) {
-        margin: 0;
+    .SearchHeader:focus-within .SearchBar {
+        margin: 1rem 0;
         background: transparent;
         border-radius: 0;
         border-bottom: 2px solid var(--text-color);
-        transition: all 200ms;
-    }*/
+        transition: all 300ms;
+    }
 
     md-chip-set {
         display: none;

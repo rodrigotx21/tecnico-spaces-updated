@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import { filterData, SearchType } from 'filter-data';
 import Fuse from 'fuse.js'
 import { useVirtualList } from '@vueuse/core';
@@ -82,6 +82,10 @@ watch([searchQuery, selectedType], () => {
     } else {
         filteredSpaces.value = fuse.search(searchQuery.value).map(result => result.item);
     }
+
+    nextTick(() => {
+        scrollTo(0);
+    });
 }, { immediate: true });
 
 
@@ -92,12 +96,12 @@ function filterSpaces(query, type) {
 }
 
 // Use Virtual List
-const { list, containerProps, wrapperProps } = useVirtualList(
+const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(
   filteredSpaces,
   {
     // Keep `itemHeight` in sync with the item's row.
     itemHeight: 188,
-  },
+  }
 )
 
 // Modal
@@ -119,7 +123,7 @@ function closeModal() {
 <template>
     <PageHeader />
     <SearchBar @search="filterSpaces" />
-    <div v-bind="containerProps" style="height: calc(100vh - 10rem); overflow-x: hidden;">
+    <div ref="container" v-bind="containerProps" style="height: 100%; overflow-x: hidden;">
       <div v-bind="wrapperProps" class="cards">
         <div v-for="(space, index) in list" :key="index" :id="index">
           <RoomCard :space="space.data" @openModal="openModal"/>
