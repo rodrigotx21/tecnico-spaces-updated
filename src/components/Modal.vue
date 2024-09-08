@@ -53,15 +53,6 @@ export default {
         const events = ref([]);
         const error = ref(null);
 
-        onMounted(() => {
-            onClickOutside(modal, () => emit('closeModal'));
-
-            // Run getEvents on mount if modalType is 'schedule'
-            if (props.type === 'schedule') {
-                getEvents();
-            }
-        });
-
         const getEvents = async () => {
             try {
                 const response = await fetch('https://idx-spaces-backend-1874118-eldfff3daa-nw.a.run.app/api/schedule/' + props.id);
@@ -79,6 +70,15 @@ export default {
                 error.value = errorMsg;
             }
         };
+
+        onMounted(() => {
+            onClickOutside(modal, () => emit('closeModal'));
+
+            // Run getEvents on mount if modalType is 'schedule'
+            if (props.type === 'schedule') {
+                getEvents();
+            }
+        });
 
         const getImageURL = () => {
             console.log("Fetching Image... ");
@@ -111,51 +111,6 @@ export default {
                 // The silent flag can be added, to disable the development warnings. This will also bring a slight performance boost
                 //isSilent: true,
                 showCurrentTime: true, // Display a line indicating the current time 
-            }
-        }
-    },
-    methods: {
-        async getEvents() {
-            try {
-                const response = await fetch(`https://fenix.tecnico.ulisboa.pt/api/fenix/v1/spaces/${this.id}?day=01/09/2024`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                this.events = data.events || [];
-                const spaceEvents = [];
-
-                console.log('Space events data fetched from API.');
-
-                for (let space_event of eventsData) {
-                    let title = '';
-                    if (space_event.type === 'LESSON') {
-                        title = space_event.course.name;
-                    } else {
-                        title = space_event.title;
-                    }
-
-                    const period = space_event.period;
-                    const start = period.start.replace(/\//g, "-");
-                    const end = period.end.replace(/\//g, "-");
-
-                    this.events.push({
-                        title: title,
-                        time: {
-                            start: start,
-                            end: end
-                        },
-                        isEditable: false,
-                        id: this.id + start.replace(" ", "")
-                    });
-                }
-
-            } catch (err) {
-                const errorMsg = 'Error fetching spaces: ' + err.message;
-                console.error(errorMsg);
-                throw new Error(errorMsg);
             }
         }
     }

@@ -38,7 +38,7 @@ export default {
 }
 </script>
 <template>
-    <div class="RoomCard" v-motion-pop>
+    <div class="RoomCard" v-motion-slide-right>
         <div class="header">
         <img :src="space_icon[space.type.toLowerCase()]" alt="space-icon-big" class="room_icon">
         <div class="info">
