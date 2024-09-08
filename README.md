@@ -26,7 +26,7 @@ You can access the live web app here: [Técnico Spaces](https://tecnico-spaces.w
 
 ## Known Issues & Limitations
 
-- **Fenix API Inconsistencies**: The app relies on the Fenix API, which may have some inconsistencies. If you notice any mistakes or discrepancies, please feel free to report them or submit a pull request!
+- **Fenix API Inconsistencies**: The app relies on the Fenix API, which may have some inconsistencies. If you notice any mistakes or discrepancies, please feel free to report them or create an Issue!
 
 ## Acknowledgements
 
