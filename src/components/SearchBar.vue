@@ -52,7 +52,7 @@ export default {
                 autocomplete="off"
                 pattern="\S+.*">
         </div>
-        <md-chip-set>
+        <!--<md-chip-set>
             <md-filter-chip 
                 label="Campus" 
                 @click="toggleType('CAMPUS')" 
@@ -73,7 +73,7 @@ export default {
                 @click="toggleType('ROOM')" 
                 :selected="selectedType == 'ROOM'">
             </md-filter-chip>
-        </md-chip-set>
+        </md-chip-set>-->
     </section>
 </template>
 
@@ -103,10 +103,9 @@ export default {
         transition: all 300ms;
     }
 
-    md-chip-set {
+    /* md-chip-set {
         display: none;
         flex-wrap: nowrap;
-        /*padding: 0.625rem;*/
         padding: 0 0.625rem 1rem 0.625rem;
         width: 100%;
         height: fit-content;
@@ -118,7 +117,7 @@ export default {
     md-chip-set:has(md-filter-chip[selected]) {
         display: flex;
         gap: 0.5rem;
-    }
+    } */
 
     .label {
         --label-text-font: Inter;
