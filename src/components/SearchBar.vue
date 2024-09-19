@@ -79,10 +79,7 @@ export default {
 
 <style scoped>
     .SearchHeader {
-        position: sticky;
-        top: 0;
         background: var(--background-color);
-        z-index: 1;
         display: flex;
         flex-direction: column;
     }

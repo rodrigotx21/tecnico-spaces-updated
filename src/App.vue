@@ -122,7 +122,7 @@ function closeModal() {
 <template>
     <PageHeader />
     <SearchBar @search="filterSpaces" />
-    <div ref="container" v-bind="containerProps" style="height: 100%; overflow-x: hidden;">
+    <div ref="container" v-bind="containerProps" style="height: calc(100% - 9.625rem); overflow-x: hidden;">
       <div v-bind="wrapperProps" class="cards">
         <div v-for="(space, index) in list" :key="index" :id="index">
           <RoomCard :space="space.data" @openModal="openModal"/>

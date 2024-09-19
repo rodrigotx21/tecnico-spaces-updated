@@ -1,6 +1,8 @@
 <template>
     <section class="PageHeader">
-        <img src="/icons8-map.svg" class="tecnico" alt="IST Logo">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScCjiPiwdhC51kuiF77fPbVVnTeQwo2ERBXHaE3l-9m0QsJCw/viewform?usp=sf_link" target="_blank">
+            <img src="/icons8-map.svg" class="tecnico" alt="IST Logo">
+        </a>
         <h1><span class="tecnico">TÉCNICO</span> SPACES</h1>
         <a href="https://github.com/rodrigotx21/tecnico-spaces">
             <svg class="github" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 30 30" fill="#fff8f7">
