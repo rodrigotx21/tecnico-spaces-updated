@@ -26,8 +26,18 @@ async function fetchDataFromAPI() {
     const data = await response.json();
     
     spaces.value = data; 
-    filteredSpaces.value = Object.values(spaces.value).flat();
     console.log('Spaces data fetched from API.');
+
+    // Apply bookmarks from localStorage
+    const bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedSpaces') || '[]');
+    for (let type in spaces.value) {
+      data[type] = data[type].map(space => ({
+        ...space,
+        bookmarked: bookmarkedIds.includes(space.id)
+      }));
+    }
+    filteredSpaces.value = Object.values(spaces.value).flat();
+    console.log('Bookmarks applied!')
 
     localStorage.setItem('spaces', JSON.stringify(spaces.value));
     console.log('Spaces data saved to local storage.');
@@ -57,7 +67,7 @@ onMounted(() => {
 
 
 // Watch for changes in searchQuery or selectedType and filter spaces accordingly
-watch([searchQuery, selectedType], () => {
+watch([searchQuery, selectedType, spaces], () => {
     // Check if searchQuery.value is a string
     if (typeof searchQuery.value !== 'string') {
         console.error('searchQuery must be a string')
@@ -82,11 +92,46 @@ watch([searchQuery, selectedType], () => {
         filteredSpaces.value = fuse.search(searchQuery.value).map(result => result.item);
     }
 
+    // Sort the filtered spaces to show bookmarked spaces first
+    filteredSpaces.value.sort((a, b) => {
+        if (a.bookmarked === b.bookmarked) return 0;
+        if (a.bookmarked) return -1;
+        return 1;
+    });
+
     nextTick(() => {
         scrollTo(0);
     });
 }, { immediate: true });
 
+
+// Bookmark spaces
+function toggleBookmarked(id) {
+  // Iterate over each type of space
+  for (let type in spaces.value) {
+    let spaceList = spaces.value[type];
+    let space = spaceList.find(space => space.id === id);
+    // If the space is found, toggle the bookmarked property
+    if (space) {
+      space.bookmarked = !space.bookmarked;
+
+      // Update the local storage for bookmarked spaces
+      const bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedSpaces') || '[]');
+      if (space.bookmarked) {
+        bookmarkedIds.push(space.id);
+      } else {
+        const index = bookmarkedIds.indexOf(space.id);
+        if (index > -1) {
+          bookmarkedIds.splice(index, 1);
+        }
+      }
+      localStorage.setItem('bookmarkedSpaces', JSON.stringify(bookmarkedIds));
+      console.log(`Space with id ${id} bookmarked status toggled and updated in local storage.`);
+
+      return; // Exit the function once the space is found and toggled
+    }
+  }
+}
 
 // Function to handle search and filter
 function filterSpaces(query, type) {
@@ -122,10 +167,10 @@ function closeModal() {
 <template>
     <PageHeader />
     <SearchBar @search="filterSpaces" />
-    <div ref="container" v-bind="containerProps" style="height: calc(100% - 9.625rem); overflow-x: hidden;">
+    <div ref="container" v-bind="containerProps" style="height: calc(100% - 9.85rem); overflow-x: hidden;">
       <div v-bind="wrapperProps" class="cards">
         <div v-for="(space, index) in list" :key="index" :id="index">
-          <RoomCard :space="space.data" @openModal="openModal"/>
+          <RoomCard :space="space.data" @openModal="openModal" @toggleBookmarked="toggleBookmarked"/>
         </div>
       </div>
     </div>

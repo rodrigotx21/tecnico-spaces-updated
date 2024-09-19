@@ -18,11 +18,17 @@ export default defineConfig({
         'icons8-map.svg',
         'robots.txt',
         'apple-touch-icon.png',
-        'icons-schedule.svg',
+        'icon-schedule.svg',
         'icon-search.svg',
         'icons8-blueprint.svg',
         'icons8-google-maps.svg',
-        'icons8-last-24-hours.svg'
+        'icons8-last-24-hours.svg',
+        'icon-star.svg',
+        'icon-star-filled.svg',
+        'icons8-big-building.svg',
+        'icons8-big-campus.svg',
+        'icons8-big-floor.svg',
+        'icons8-big-room.svg'
       ],
       theme_color: '#00253e',
       manifest: {
@@ -41,8 +47,8 @@ export default defineConfig({
             type: 'image/svg+xml'
           },
           {
-            src: '/icons-schedule.svg',
-            sizes: '40x40',
+            src: '/icon-schedule.svg',
+            sizes: '20x20',
             type: 'image/svg+xml'
           },
           {
@@ -63,6 +69,41 @@ export default defineConfig({
           {
             src: '/icons8-last-24-hours.svg',
             sizes: '30x30',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icon-star.svg',
+            sizes: '24x24',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icon-star-filled.svg',
+            sizes: '24x24',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons8-big-building',
+            sizes: '80x80',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons8-big-building',
+            sizes: '80x80',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons8-big-campus',
+            sizes: '80x80',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons8-big-floor',
+            sizes: '80x80',
+            type: 'image/svg+xml'
+          },
+          {
+            src: '/icons8-big-room',
+            sizes: '80x80',
             type: 'image/svg+xml'
           }
         ]

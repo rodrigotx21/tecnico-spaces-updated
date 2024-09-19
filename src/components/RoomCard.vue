@@ -22,7 +22,7 @@ export default {
             }
         }
     },
-    emits: ['openModal'],
+    emits: ['openModal', 'toggleBookmarked'],
     methods: {
         openModal(modal_type) {
             if (modal_type == 'schedule') {
@@ -33,6 +33,9 @@ export default {
         },
         getMapsURL() {
             return new URL(this.space.map)
+        },
+        bookmarkSpace() {
+            this.$emit('toggleBookmarked', this.space.id);
         }
     }
 }
@@ -60,6 +63,10 @@ export default {
             </a>
             <button v-if="space.type == 'ROOM'" class="small_button" @click="openModal('schedule')">
                 <img src="/icon-schedule.svg" alt="schedule-icon" class="button_icon">
+            </button>
+            <button class="small_button" @click="bookmarkSpace()">
+                <img v-if="!space.bookmarked" src="/icon-star.svg" alt="schedule-icon" class="button_icon">
+                <img v-if="space.bookmarked" src="/icon-star-filled.svg" alt="schedule-icon" class="button_icon">
             </button>
         </div>
     </div>
