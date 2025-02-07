@@ -17,7 +17,7 @@ const filteredSpaces = ref([]);
 // Function to fetch data from API
 async function fetchDataFromAPI() {
   try {
-    const response = await fetch('https://idx-spaces-backend-1874118-eldfff3daa-nw.a.run.app/api/spaces');
+    const response = await fetch('https://tecnico-spaces-backend.onrender.com/api/spaces');
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
